@@ -67,17 +67,22 @@ class OutputResultHandler:
         output("".join([prefix, len_classes_str, "."]))
 
         prefix = "Количество функций пакета: "
-        len_classes_str = format_set(code_data.functions, setting="summary").replace("\n", ", ")
-        output("".join([prefix, len_classes_str, "."]))
+        len_functions_str = format_set(code_data.functions, setting="summary").replace("\n", ", ")
+        output("".join([prefix, len_functions_str, "."]))
 
         prefix = "Количество констант пакета: "
-        len_classes_str = format_set(code_data.constants, setting="summary").replace("\n", ", ")
-        output("".join([prefix, len_classes_str, "."]))
+        len_constants_str = format_set(code_data.constants, setting="summary").replace("\n", ", ")
+        output("".join([prefix, len_constants_str, "."]))
 
         prefix = "Количество строк кода пакета: "
-        len_classes_str = str(code_data.lines_of_code)
-        output("".join([prefix, len_classes_str, "."]))
+        len_lines_of_code_str = str(code_data.lines_of_code)
+        output("".join([prefix, len_lines_of_code_str, "."]))
 
         prefix = "Количество строк комментариев: "
-        len_classes_str = str(code_data.comments)
-        output("".join([prefix, len_classes_str, "."]))
+        len_comments_str = str(code_data.comments)
+        output("".join([prefix, len_comments_str, "."]))
+
+        prefix = "Количество пустых строк: "
+        len_empty_lines_str = str(code_data.empty_lines)
+        output("".join([prefix, len_empty_lines_str, "."]))
+        
