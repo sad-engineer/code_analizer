@@ -1,6 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
+from config import get_setting
+
+
 def format_set(data_set, setting="summary") -> str:
     """
     Функция для форматирования множества.
@@ -16,7 +19,7 @@ def format_set(data_set, setting="summary") -> str:
 
     data_len = str(len(data_set))
     data_list = list(data_set)
-    formatted_data = "\n".join(data_list)
+    formatted_data = "".join(["    " + item + "\n" for item in data_list])
     return {
         "summary": f"{data_len}",
         "details": f"{formatted_data}",
@@ -59,30 +62,42 @@ class OutputResultHandler:
         :param output: метод OutputHandler'а (который реализует процедуру вывода строки куда-либо. 
         Например FileOutputHandler.print(line))
         """
+
+        def print_set(token, set_, setting='minimum'):
+            """ Внутренняя функция, выводит множество на печать"""
+            prefix = f"Количество {token} пакета: "
+            len_classes_str = format_set(set_, setting="summary").replace("\n", ", ")
+            output("".join([prefix, len_classes_str, "."]))
+            if setting == 'full':
+                output("Пакет содержит: ")
+                list_classes = format_set(set_, setting="details")[:-2]
+                output(list_classes)
+
+        details = get_setting('Global settings', 'details')
+
         title = f"Анализируемый пакет: {code_data.project_name}"
         output(title)
 
-        prefix = "Количество классов пакета: "
-        len_classes_str = format_set(code_data.classes, setting="summary").replace("\n", ", ")
-        output("".join([prefix, len_classes_str, "."]))
+        print_set(token='классов', set_=code_data.classes, setting=details)
+        output("")
 
-        prefix = "Количество функций пакета: "
-        len_functions_str = format_set(code_data.functions, setting="summary").replace("\n", ", ")
-        output("".join([prefix, len_functions_str, "."]))
+        print_set(token='функций', set_=code_data.functions, setting=details)
+        output("")
 
-        prefix = "Количество констант пакета: "
-        len_constants_str = format_set(code_data.constants, setting="summary").replace("\n", ", ")
-        output("".join([prefix, len_constants_str, "."]))
+        print_set(token='констант', set_=code_data.constants, setting=details)
+        output("")
 
         prefix = "Количество строк кода пакета: "
         len_lines_of_code_str = str(code_data.lines_of_code)
         output("".join([prefix, len_lines_of_code_str, "."]))
+        output("")
 
         prefix = "Количество строк комментариев: "
         len_comments_str = str(code_data.comments)
         output("".join([prefix, len_comments_str, "."]))
+        output("")
 
         prefix = "Количество пустых строк: "
         len_empty_lines_str = str(code_data.empty_lines)
         output("".join([prefix, len_empty_lines_str, "."]))
-        
+        output("")

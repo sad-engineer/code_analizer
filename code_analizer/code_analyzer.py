@@ -81,11 +81,11 @@ class CodeAnalyzer:
                     elif line_type == "empty":
                         self.empty_lines += 1
                     elif line_type == "class":
-                        class_name = line.strip().split()[1]
-                        self.classes.add(f"{class_name} ({file_path})")
+                        class_name = line.strip().split()[1].split("(")[0].replace(":", "")
+                        self.classes.add(f"{class_name} in {file_path}")
                     elif line_type == "function":
-                        function_name = line.strip().split()[1]
-                        self.functions.add(f"{function_name} ({file_path})")
+                        function_name = line.strip().split()[1].split("(")[0]
+                        self.functions.add(f"{function_name} in {file_path}")
                     elif line_type == "constant":
                         constant_name = line.strip().strip(' .,"').split()[0]
                         self.constants.add(f"{constant_name}")
