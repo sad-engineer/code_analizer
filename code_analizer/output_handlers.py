@@ -59,6 +59,8 @@ class OutputResultHandler:
         :param output: метод OutputHandler'а (который реализует процедуру вывода строки куда-либо. 
         Например FileOutputHandler.print(line))
         """
+        title = f"Анализируемый пакет: {code_data.project_name}"
+        output(title)
 
         prefix = "Количество классов пакета: "
         len_classes_str = format_set(code_data.classes, setting="summary").replace("\n", ", ")
@@ -72,7 +74,7 @@ class OutputResultHandler:
         len_classes_str = format_set(code_data.constants, setting="summary").replace("\n", ", ")
         output("".join([prefix, len_classes_str, "."]))
 
-        prefix = "Количество строк кода: "
+        prefix = "Количество строк кода пакета: "
         len_classes_str = str(code_data.lines_of_code)
         output("".join([prefix, len_classes_str, "."]))
 
