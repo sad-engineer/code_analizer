@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 from pathlib import Path
+from gitignore_parser import parse_gitignore
 
 
 class CodeAnalyzer:
@@ -66,7 +67,15 @@ class CodeAnalyzer:
         Для каждого файла определяет количество строк кода, комментариев, классов, функций и констант."""
         self.project_name = self.folder_path.split("/")[-1]
         self.file_list = list(Path(self.folder_path).rglob("*.py"))
-        for file_path in self.file_list:
+
+        gitignore_path = Path(self.folder_path) / ".gitignore"
+        if gitignore_path.exists():
+            gitignore_match = parse_gitignore(gitignore_path)
+            filtered_file_list = [str(f) for f in self.file_list if not gitignore_match(str(f))]
+        else:
+            filtered_file_list = [str(f) for f in self.file_list]
+
+        for file_path in filtered_file_list:
             if "__pycache__" in str(file_path):
                 continue
             with open(file_path, "r", encoding="utf8") as f:

@@ -38,7 +38,7 @@ class FileOutputHandler:
         self.output_file_path = output_file_path
         open(self.output_file_path, 'w').close()
 
-    def print(self, output_string) -> None:
+    def print_results(self, output_string) -> None:
         """
         Метод, который записывает переданную строку в файл
 

@@ -5,7 +5,7 @@ import tkinter as tk
 from code_analizer.guis import GUI
 from code_analizer.code_analyzer import CodeAnalyzer
 from code_analizer.line_processor import LineProcessor
-from code_analizer.output_handlers import OutputResultHandler
+from code_analizer.output_handlers import OutputResultHandler, FileOutputHandler
 
 
 def main():
@@ -17,13 +17,7 @@ def main():
         analyzer = CodeAnalyzer(folder_path, LineProcessor)
         analyzer.analyze()
 
-        OutputResultHandler().print_results(code_data=analyzer)    # , output=ConsoleOutputHandler().print)
-        #
-        # console_output_handler = ConsoleOutputHandler().print
-        # analyzer.print_results(output=console_output_handler)
-        #
-        # file_output_handler = FileOutputHandler("/".join([folder_path, "output.txt"])).print
-        # analyzer.print_results(output=file_output_handler)
+        OutputResultHandler().print_results(code_data=analyzer)
 
 
 if __name__ == '__main__':
