@@ -17,4 +17,6 @@ temp/
 logs/
 settings/
 input/
-output/
+/output/
+/output/*
+!/output/.gitkeep
