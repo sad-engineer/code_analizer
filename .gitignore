@@ -15,3 +15,6 @@ env.bak /
 dist/
 temp/
 logs/
+settings/
+input/
+#output/

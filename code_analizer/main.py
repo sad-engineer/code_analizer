@@ -3,10 +3,10 @@
 # -------------------------------------------------------------------------------
 import tkinter as tk
 
-from code_analizer.code_analyzer import CodeAnalyzer
-from code_analizer.guis import GUI
-from code_analizer.line_processor import LineProcessor
-from code_analizer.output_handlers import FileOutputHandler, OutputResultHandler
+from code_analizer.core.code_analyzer import CodeAnalyzer
+from code_analizer.default_gui.guis import GUI
+from code_analizer.core.line_processor import LineProcessor
+from code_analizer.output.output_handlers import OutputResultHandler
 
 
 def main():
