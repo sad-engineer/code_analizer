@@ -1,17 +1,39 @@
 [tool.poetry]
 name = "code-analizer"
 version = "0.0.06"
-description = "Пакет анализа кода проекта"
-authors = ["Andrey Nikolaevich Korenyuk <korenyuk.a.n@mail.ru>"]
+description = "Пакет Python для анализа кода проекта"
+authors = ["Andrey Korenyuk <korenyuk.a.n@mail.ru>"]
 license = "LICENSE.txt"
 readme = "README.md"
-packages = [{include = "code-analizer"}]
-
+packages = [{include = "code_analizer"}]
 
 [tool.poetry.dependencies]
 python = "^3.9"
 gitignore-parser = "^0.1.3"
 
+[tool.black]
+line-length = 120
+target-version = ['py39']
+include = '\.pyi?$'
+skip-string-normalization = true
+extend-exclude = '''
+/(
+    \.git
+  | \.hg
+  | \.mypy_cache
+  | \.tox
+  | \.venv
+  | _build
+  | buck-out
+  | build
+  | dist
+)/
+'''
+
+[tool.isort]
+profile = "black"
+multi_line_output = 3
+line_length = 120
 
 [build-system]
 requires = ["poetry-core"]

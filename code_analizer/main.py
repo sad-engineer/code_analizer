@@ -2,10 +2,11 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 import tkinter as tk
-from code_analizer.guis import GUI
+
 from code_analizer.code_analyzer import CodeAnalyzer
+from code_analizer.guis import GUI
 from code_analizer.line_processor import LineProcessor
-from code_analizer.output_handlers import OutputResultHandler, FileOutputHandler
+from code_analizer.output_handlers import FileOutputHandler, OutputResultHandler
 
 
 def main():
@@ -20,5 +21,5 @@ def main():
         OutputResultHandler().print_results(code_data=analyzer)
 
 
-if __name__ == '__main__':
+if __name__ == "__main__":
     main()

@@ -23,7 +23,7 @@ def format_set(data_set, setting="summary") -> str:
     return {
         "summary": f"{data_len}",
         "details": f"{formatted_data}",
-        "full": f"{data_len}\n{formatted_data}"
+        "full": f"{data_len}\n{formatted_data}",
     }.get(setting)
 
 
@@ -36,7 +36,7 @@ class FileOutputHandler:
 
     def __init__(self, output_file_path) -> None:
         self.output_file_path = output_file_path
-        open(self.output_file_path, 'w').close()
+        open(self.output_file_path, "w").close()
 
     def print_results(self, output_string) -> None:
         """
@@ -59,32 +59,32 @@ class OutputResultHandler:
         Метод, который выводит результаты анализа кода проекта (code_data)
 
         :param code_data: анализа кода проекта
-        :param output: метод OutputHandler'а (который реализует процедуру вывода строки куда-либо. 
+        :param output: метод OutputHandler'а (который реализует процедуру вывода строки куда-либо.
         Например FileOutputHandler.print(line))
         """
 
-        def print_set(token, set_, setting='minimum'):
-            """ Внутренняя функция, выводит множество на печать"""
+        def print_set(token, set_, setting="minimum"):
+            """Внутренняя функция, выводит множество на печать"""
             prefix = f"Количество {token} пакета: "
             len_classes_str = format_set(set_, setting="summary").replace("\n", ", ")
             output("".join([prefix, len_classes_str, "."]))
-            if setting == 'full':
+            if setting == "full":
                 output("Пакет содержит: ")
                 list_classes = format_set(set_, setting="details")[:-2]
                 output(list_classes)
 
-        details = get_setting('Global settings', 'details')
+        details = get_setting("Global settings", "details")
 
         title = f"Анализируемый пакет: {code_data.project_name}"
         output(title)
 
-        print_set(token='классов', set_=code_data.classes, setting=details)
+        print_set(token="классов", set_=code_data.classes, setting=details)
         output("")
 
-        print_set(token='функций', set_=code_data.functions, setting=details)
+        print_set(token="функций", set_=code_data.functions, setting=details)
         output("")
 
-        print_set(token='констант', set_=code_data.constants, setting=details)
+        print_set(token="констант", set_=code_data.constants, setting=details)
         output("")
 
         prefix = "Количество строк кода пакета: "

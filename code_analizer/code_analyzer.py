@@ -2,6 +2,7 @@
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
 from pathlib import Path
+
 from gitignore_parser import parse_gitignore
 
 
@@ -64,7 +65,8 @@ class CodeAnalyzer:
 
     def analyze(self):
         """Анализирует все файлы с расширением .py в папке folder_path.
-        Для каждого файла определяет количество строк кода, комментариев, классов, функций и констант."""
+        Для каждого файла определяет количество строк кода, комментариев, классов, функций и констант.
+        """
         self.project_name = self.folder_path.split("/")[-1]
         self.file_list = list(Path(self.folder_path).rglob("*.py"))
 
