@@ -5,6 +5,8 @@ from pathlib import Path
 
 from gitignore_parser import parse_gitignore
 
+from code_analizer.core.dataclasses import CodeData
+
 
 class CodeAnalyzer:
     """
@@ -61,7 +63,7 @@ class CodeAnalyzer:
         self.constants: set = set()
         self.line_processor = line_processor
 
-    def analyze(self):
+    def analyze(self) -> CodeData:
         """Анализирует все файлы с расширением .py в папке folder_path.
         Для каждого файла определяет количество строк кода, комментариев, классов, функций и констант.
         """
@@ -98,3 +100,12 @@ class CodeAnalyzer:
                     elif line_type == "constant":
                         constant_name = line.strip().strip(' .,"').split()[0]
                         self.constants.add(f"{constant_name}")
+        return CodeData(
+            project_name=self.project_name,
+            lines_of_code=self.lines_of_code,
+            comments=self.comments,
+            empty_lines=self.empty_lines,
+            classes=self.classes,
+            functions=self.functions,
+            constants=self.constants,
+        )
