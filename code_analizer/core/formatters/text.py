@@ -38,10 +38,10 @@ class TextFormatter(BaseFormatter):
         if get_setting("details") == "full":
             output.append("Детали:")
             output.append("\nКлассы:")
-            output.extend([f"  - {cls}" for cls in code_data.classes])
+            output.extend([f"  - {cls}" for cls in code_data.entities.classes])
             output.append("\nФункции:")
-            output.extend([f"  - {func}" for func in code_data.functions])
+            output.extend([f"  - {func}" for func in code_data.entities.functions])
             output.append("\nКонстанты:")
-            output.extend([f"  - {const}" for const in code_data.constants])
+            output.extend([f"  - {const}" for const in code_data.entities.constants])
 
         return "\n".join(output)

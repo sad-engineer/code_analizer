@@ -55,9 +55,11 @@ class OutputtingFactory:
             [
                 self._check_formatter(formatter_type),
                 self._check_printer(printer_type),
-                self._check_output_path(output_path),
+                self._check_output_path(output_path) if printer_type != "console" else True,
             ]
         ):
+            if printer_type != "console":
+                self._check_output_path(output_path),
             formatter_class = self._formatters[formatter_type]
             printer_class = self._printers[printer_type]
 

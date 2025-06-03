@@ -42,9 +42,9 @@ class HtmlFormatter(BaseFormatter):
                 <p>Строк кода: {code_data.lines_of_code}</p>
                 <p>Комментариев: {code_data.comments}</p>
                 <p>Пустых строк: {code_data.empty_lines}</p>
-                <p>Классов: {len(code_data.classes)}</p>
-                <p>Функций: {len(code_data.functions)}</p>
-                <p>Констант: {len(code_data.constants)}</p>
+                <p>Классов: {len(code_data.entities.classes)}</p>
+                <p>Функций: {len(code_data.entities.functions)}</p>
+                <p>Констант: {len(code_data.entities.constants)}</p>
             </div>
         """
 
@@ -56,7 +56,7 @@ class HtmlFormatter(BaseFormatter):
                 <h3>Классы</h3>
                 <div class="item">
             """
-            for cls in code_data.classes:
+            for cls in code_data.entities.classes:
                 html += f"<p>{cls}</p>"
 
             html += """
@@ -64,7 +64,7 @@ class HtmlFormatter(BaseFormatter):
                 <h3>Функции</h3>
                 <div class="item">
             """
-            for func in code_data.functions:
+            for func in code_data.entities.functions:
                 html += f"<p>{func}</p>"
 
             html += """
@@ -72,7 +72,7 @@ class HtmlFormatter(BaseFormatter):
                 <h3>Константы</h3>
                 <div class="item">
             """
-            for const in code_data.constants:
+            for const in code_data.entities.constants:
                 html += f"<p>{const}</p>"
 
             html += """

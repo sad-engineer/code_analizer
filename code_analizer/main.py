@@ -31,6 +31,15 @@ def main():
         )
         out.print_results(code_data)
 
+        out = OutputtingFactory().get_outputer(
+            formatter_type="console",
+            printer_type="console",
+            output_path=None
+        )
+        out.print_results(code_data)
+
+
+
 
 if __name__ == "__main__":
     main()

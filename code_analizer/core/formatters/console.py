@@ -36,9 +36,9 @@ class ConsoleFormatter(BaseFormatter):
             f"Строк кода: {code_data.lines_of_code}",
             f"Комментариев: {code_data.comments}",
             f"Пустых строк: {code_data.empty_lines}",
-            f"Классов: {len(code_data.classes)}",
-            f"Функций: {len(code_data.functions)}",
-            f"Констант: {len(code_data.constants)}",
+            f"Классов: {len(code_data.entities.classes)}",
+            f"Функций: {len(code_data.entities.functions)}",
+            f"Констант: {len(code_data.entities.constants)}",
         ]
         return "\n".join(stats)
 
@@ -51,12 +51,12 @@ class ConsoleFormatter(BaseFormatter):
         details = ["\nДетали:"]
 
         details.append("\nКлассы:")
-        details.extend([f"  - {cls}" for cls in code_data.classes])
+        details.extend([f"  - {cls}" for cls in code_data.entities.classes])
 
         details.append("\nФункции:")
-        details.extend([f"  - {func}" for func in code_data.functions])
+        details.extend([f"  - {func}" for func in code_data.entities.functions])
 
         details.append("\nКонстанты:")
-        details.extend([f"  - {const}" for const in code_data.constants])
+        details.extend([f"  - {const}" for const in code_data.entities.constants])
 
         return "\n".join(details)

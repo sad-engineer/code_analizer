@@ -26,17 +26,17 @@ class JsonFormatter(BaseFormatter):
                 "lines_of_code": code_data.lines_of_code,
                 "comments": code_data.comments,
                 "empty_lines": code_data.empty_lines,
-                "classes": len(code_data.classes),
-                "functions": len(code_data.functions),
-                "constants": len(code_data.constants),
+                "classes": len(code_data.entities.classes),
+                "functions": len(code_data.entities.functions),
+                "constants": len(code_data.entities.constants),
             },
         }
 
         if get_setting("details") == "full":
             results["details"] = {
-                "classes": list(code_data.classes),
-                "functions": list(code_data.functions),
-                "constants": list(code_data.constants),
+                "classes": list(code_data.entities.classes),
+                "functions": list(code_data.entities.functions),
+                "constants": list(code_data.entities.constants),
             }
 
         return results
