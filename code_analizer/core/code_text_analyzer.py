@@ -20,7 +20,7 @@ class CodeTextAnalyzer:
     """
 
     def __init__(self, line_processor):
-        self.line_processor = line_processor
+        self.line_processor = line_processor()
 
     def analyze(self, text: str, filename: str = "file.py") -> CodeData:
         """
@@ -33,7 +33,7 @@ class CodeTextAnalyzer:
             CodeData
         """
         code_data = CodeData(
-            project_name=filename,
+            filename=filename,
             lines_of_code=0,
             comments=0,
             empty_lines=0,
@@ -43,8 +43,7 @@ class CodeTextAnalyzer:
         )   
         lines = text.splitlines()
         for line in lines:
-            line_processor = self.line_processor(line)
-            line_type = line_processor.process_line()
+            line_type = self.line_processor.process_line(line)
             if line_type == "code":
                 code_data.lines_of_code += 1
             elif line_type == "comment":

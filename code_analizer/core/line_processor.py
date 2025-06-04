@@ -8,25 +8,23 @@ class LineProcessor:
     Parameters:
     line (str): Строка кода для обработки.
     """
-
-    def __init__(self, line) -> None:
-        self.line = line.strip()
-
-    def process_line(self) -> str:
+    @staticmethod
+    def process_line(line) -> str:
         """
         Метод, который определяет тип строки.
 
         Returns:
         str: Тип строки - пустая строка, комментарий, класс, функция, константа или код.
         """
-        if not self.line.strip():
+        line = line.strip()
+        if not line.strip():
             return "empty"
-        if self.line.startswith("#"):
+        if line.startswith("#"):
             return "comment"
-        if self.line.startswith("class "):
+        if line.startswith("class "):
             return "class"
-        if self.line.startswith("def "):
+        if line.startswith("def "):
             return "function"
-        if self.line.split("=")[0].isupper():
+        if line.split("=")[0].isupper():
             return "constant"
         return "code"

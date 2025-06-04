@@ -4,7 +4,7 @@
 import tkinter as tk
 from pathlib import Path
 
-from code_analizer.core.code_text_analyzer import CodeAnalyzer
+from code_analizer.core.code_text_analyzer import CodeTextAnalyzer
 from code_analizer.core.line_processor import LineProcessor
 from code_analizer.default_gui.guis import GUI
 from code_analizer.output.factory import OutputtingFactory
@@ -21,7 +21,7 @@ def main():
     root.mainloop()
     folder_path = gui.folder_path
     if folder_path:
-        analyzer = CodeAnalyzer(folder_path, LineProcessor)
+        analyzer = CodeTextAnalyzer(folder_path, LineProcessor)
         code_data = analyzer.analyze()
 
         out = OutputtingFactory().get_outputer(
