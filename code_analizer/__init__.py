@@ -7,13 +7,3 @@ code_analizer - Пакет для анализа кода проекта.
 Этот пакет предоставляет инструменты для анализа структуры кода,
 поиска зависимостей и генерации отчетов о качестве кода.
 """
-
-from .api import CodeAnalyzerAPI
-
-__version__ = "0.0.06"
-__author__ = "Andrey Korenyuk"
-__email__ = "korenyuk.a.n@mail.ru"
-
-__all__ = [
-    'CodeAnalyzerAPI',
-]
