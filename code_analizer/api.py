@@ -4,7 +4,7 @@
 from pathlib import Path
 from typing import Dict, List, Optional, Union
 
-from code_analizer.core.analyzer import CodeAnalyzer
+from code_analizer.core.code_text_analyzer import CodeAnalyzer
 from code_analizer.core.line_processor import LineProcessor
 
 # from code_analizer.output.factory import PrinterFactory

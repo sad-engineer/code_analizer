@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "code-analizer"
-version = "0.0.12"
+version = "0.0.13"
 description = "Пакет Python для анализа кода проекта"
 authors = ["Andrey Korenyuk <korenyuk.a.n@mail.ru>"]
 readme = "README.md"

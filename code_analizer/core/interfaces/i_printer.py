@@ -4,7 +4,7 @@
 from typing import Any, Protocol, runtime_checkable
 from typing import Optional, Union
 from pathlib import Path
-from code_analizer.core.interfaces.I_formatter import IFormatter
+from code_analizer.core.interfaces.i_formatter import IFormatter
 
 
 @runtime_checkable

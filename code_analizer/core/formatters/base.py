@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 from typing import Any
 
-from code_analizer.core.interfaces.I_formatter import IFormatter
+from code_analizer.core.interfaces.i_formatter import IFormatter
 
 
 class BaseFormatter(IFormatter):

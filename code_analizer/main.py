@@ -4,7 +4,7 @@
 import tkinter as tk
 from pathlib import Path
 
-from code_analizer.core.analyzer import CodeAnalyzer
+from code_analizer.core.code_text_analyzer import CodeAnalyzer
 from code_analizer.core.line_processor import LineProcessor
 from code_analizer.default_gui.guis import GUI
 from code_analizer.output.factory import OutputtingFactory
@@ -39,7 +39,7 @@ def main():
         out.print_results(code_data)
 
 
-
-
 if __name__ == "__main__":
     main()
+
+    # async def
