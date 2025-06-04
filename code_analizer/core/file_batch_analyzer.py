@@ -25,7 +25,7 @@ class FileBatchAnalyzer:
         """
         content = await file.read()
         code = content.decode()
-        return self.analyze(code, file.filename)
+        return self.analyzer.analyze(code, file.filename)
     
     async def analyze_files(self, files: List[IUploadFile]) -> List[CodeData]:
         """ Анализирует список файлов."""
