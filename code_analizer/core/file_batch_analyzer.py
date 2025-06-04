@@ -3,7 +3,7 @@
 # ---------------------------------------------------------------------------------------------------------------------
 from typing import List
 from code_analizer.core.code_text_analyzer import CodeTextAnalyzer
-from code_analizer.core.dataclasses import CodeData
+from code_analizer.core.data_classes import CodeData
 from code_analizer.core.interfaces import IUploadFile
 
 

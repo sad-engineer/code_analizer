@@ -1,7 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # -------------------------------------------------------------------------------
-from code_analizer.core.dataclasses import CodeData
+from code_analizer.core.data_classes import CodeData
 
 
 class CodeTextAnalyzer:
