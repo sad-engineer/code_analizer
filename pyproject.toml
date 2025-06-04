@@ -1,9 +1,8 @@
 [tool.poetry]
 name = "code-analizer"
-version = "0.0.06"
+version = "0.0.12"
 description = "Пакет Python для анализа кода проекта"
 authors = ["Andrey Korenyuk <korenyuk.a.n@mail.ru>"]
-license = "LICENSE.txt"
 readme = "README.md"
 packages = [{include = "code_analizer"}]
 

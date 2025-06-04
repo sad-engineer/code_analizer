@@ -7,9 +7,9 @@ from dataclasses import dataclass
 
 @dataclass
 class Entities:
-    classes: list[str]
-    functions: list[str]
-    constants: list[str]
+    classes: set[str]
+    functions: set[str]
+    constants: set[str]
 
 
 @dataclass
