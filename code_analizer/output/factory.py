@@ -2,35 +2,41 @@
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
 from pathlib import Path
-from typing import Any, Optional, Type, Union
+from typing import Optional, Type, Union
 
-from code_analizer.core.formatters import FORMATTERS
-from code_analizer.core.interfaces import IFormatter, IPrinter
+from code_analizer.core import CODE_FORMATTERS, SUMMARY_FORMATTERS, CodeData, IFormatter, IPrinter, SummaryData
 from code_analizer.output.printers import PRINTERS
 
 
 class Outputting:
     def __init__(
         self,
-        formatter_class: Type[IFormatter],
+        code_formatter_class: Type[IFormatter],
+        summary_formatter_class: Type[IFormatter],
         printer_class: Type[IPrinter],
         output_path: Optional[Union[str, Path]] = None,
     ):
-        self.formatter_class = formatter_class
+        self.code_formatter_class = code_formatter_class
+        self.summary_formatter_class = summary_formatter_class
         self.printer_class = printer_class
         self.output_path = output_path
 
-    def print_results(self, code_data: Any) -> None:
+    def print_results(self, code_data: CodeData, summary_data: SummaryData) -> None:
         """Выводит результаты анализа кода в указанный тип вывода"""
-        formatter = self.formatter_class()
-        printer = self.printer_class(formatter=formatter, output_path=self.output_path)
-        return printer.print_results(code_data)
+        code_formatter = self.code_formatter_class()
+        summary_formatter = self.summary_formatter_class()
+        printer = self.printer_class(
+            code_formatter=code_formatter, summary_formatter=summary_formatter, output_path=self.output_path
+        )
+        printer.print_code_data(code_data)
+        printer.print_summary_data(summary_data)
 
 
 class OutputtingFactory:
     """Фабрика для создания форматтеров вывода"""
 
-    _formatters = FORMATTERS
+    _code_formatters = CODE_FORMATTERS
+    _summary_formatters = SUMMARY_FORMATTERS
     _printers = PRINTERS
 
     def get_outputer(
@@ -60,21 +66,31 @@ class OutputtingFactory:
         ):
             if printer_type != "console":
                 self._check_output_path(output_path),
-            formatter_class = self._formatters[formatter_type]
+            code_formatter_class = self._code_formatters[formatter_type]
+            summary_formatter_class = self._summary_formatters[formatter_type]
             printer_class = self._printers[printer_type]
 
-            return Outputting(formatter_class, printer_class, output_path)
+            return Outputting(code_formatter_class, summary_formatter_class, printer_class, output_path)
         else:
             raise ValueError("Некорректные параметры для создания объекта вывода")
 
-    def get_available_formatters(self) -> list[str]:
+    def get_available_code_formatters(self) -> list[str]:
         """
-        Возвращает список доступных типов форматтеров.
+        Возвращает список доступных типов форматтеров для анализа кода.
 
         Returns:
             list[str]: Список доступных типов форматтеров
         """
-        return list(self._formatters.keys())
+        return list(self._code_formatters.keys())
+
+    def get_available_summary_formatters(self) -> list[str]:
+        """
+        Возвращает список доступных типов форматтеров для сводных данных.
+
+        Returns:
+            list[str]: Список доступных типов форматтеров
+        """
+        return list(self._summary_formatters.keys())
 
     def get_available_printers(self) -> list[str]:
         """
@@ -87,22 +103,22 @@ class OutputtingFactory:
 
     def _check_formatter(self, formatter: str) -> bool:
         """Проверяет, является ли тип форматтера доступным"""
-        if formatter not in self._formatters:
-            raise ValueError(
-                f"Неизвестный тип форматтера: {formatter}. Доступные типы: {', '.join(self.get_available_formatters())}"
-            )
         if not isinstance(formatter, str):
             raise ValueError("Тип форматтера должен быть строкой")
+        if formatter not in self._code_formatters and formatter not in self._summary_formatters:
+            raise ValueError(
+                f"Неизвестный тип форматтера: {formatter}. Доступные типы: {', '.join(self.get_available_code_formatters() + self.get_available_summary_formatters())}"
+            )
         return True
 
     def _check_printer(self, printer: str) -> bool:
         """Проверяет, является ли тип принтера доступным"""
+        if not isinstance(printer, str):
+            raise ValueError("Тип принтера должен быть строкой")
         if printer not in self._printers:
             raise ValueError(
                 f"Неизвестный тип принтера: {printer}. Доступные типы: {', '.join(self.get_available_printers())}"
             )
-        if not isinstance(printer, str):
-            raise ValueError("Тип принтера должен быть строкой")
         return True
 
     def _check_output_path(self, output_path: Optional[Union[str, Path]] = None) -> bool:

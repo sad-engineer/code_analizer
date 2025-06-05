@@ -6,27 +6,17 @@ from dataclasses import dataclass
 
 @dataclass
 class Entities:
+    """Класс для хранения множеств классов, функций и констант"""
+
     classes: set[str]
     functions: set[str]
     constants: set[str]
 
 
 @dataclass
-class SummaryData:
-    total_files: int
-    total_lines_of_code: int
-    total_comments: int
-    total_empty_lines: int
-    total_classes: int
-    total_functions: int
-    total_constants: int
-    all_classes: set[str]
-    all_functions: set[str]
-    all_constants: set[str]
-
-
-@dataclass
 class CodeData:
+    """Класс для хранения данных по одному файлу"""
+
     filename: str
     lines_of_code: int
     comments: int
@@ -51,3 +41,19 @@ class CodeData:
         self.empty_lines = empty_lines
         self.entities = Entities(classes, functions, constants)
         self.file_content = file_content
+
+
+@dataclass
+class SummaryData:
+    """Класс для хранения сводных данных по всем файлам"""
+
+    total_files: int
+    total_lines_of_code: int
+    total_comments: int
+    total_empty_lines: int
+    total_classes: int
+    total_functions: int
+    total_constants: int
+    all_classes: set[str]
+    all_functions: set[str]
+    all_constants: set[str]
