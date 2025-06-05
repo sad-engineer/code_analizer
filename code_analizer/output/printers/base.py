@@ -5,7 +5,7 @@ from pathlib import Path
 from typing import Any, Optional, Union
 
 from code_analizer.core.interfaces import IFormatter
-from code_analizer.core.interfaces.i_printer import IPrinter
+from code_analizer.core.interfaces.printer import IPrinter
 
 
 class BasePrinter(IPrinter):

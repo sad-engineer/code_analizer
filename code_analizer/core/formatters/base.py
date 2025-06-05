@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
 from code_analizer.core.data_classes import CodeData
-from code_analizer.core.interfaces.i_formatter import IFormatter
+from code_analizer.core.interfaces.formatter import IFormatter
 
 
 class BaseFormatter(IFormatter):

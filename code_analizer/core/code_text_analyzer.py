@@ -40,6 +40,7 @@ class CodeTextAnalyzer:
             classes=set(),
             functions=set(),
             constants=set(),
+            file_content=text,
         )
         lines = text.splitlines()
         for line in lines:
