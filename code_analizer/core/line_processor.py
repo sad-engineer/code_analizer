@@ -8,6 +8,7 @@ class LineProcessor:
     Parameters:
     line (str): Строка кода для обработки.
     """
+
     @staticmethod
     def process_line(line) -> str:
         """

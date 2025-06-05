@@ -1,8 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
-from typing import Any, Dict
+from typing import Dict
 
+from code_analizer.core.data_classes import CodeData
 from code_analizer.core.formatters.base import BaseFormatter
 from code_analizer.settings.manager import get_setting
 
@@ -10,7 +11,7 @@ from code_analizer.settings.manager import get_setting
 class JsonFormatter(BaseFormatter):
     """Форматтер вывода в JSON файл"""
 
-    def format_results(self, code_data: Any) -> Dict[str, str]:
+    def format_results(self, code_data: CodeData) -> Dict[str, str]:
         """
         Форматирует результаты анализа в JSON.
 
@@ -21,7 +22,7 @@ class JsonFormatter(BaseFormatter):
             str: JSON-строка с результатами анализа
         """
         results = {
-            "project_name": code_data.project_name,
+            "project_name": code_data.filename,
             "statistics": {
                 "lines_of_code": code_data.lines_of_code,
                 "comments": code_data.comments,

@@ -40,7 +40,7 @@ class CodeTextAnalyzer:
             classes=set(),
             functions=set(),
             constants=set(),
-        )   
+        )
         lines = text.splitlines()
         for line in lines:
             line_type = self.line_processor.process_line(line)

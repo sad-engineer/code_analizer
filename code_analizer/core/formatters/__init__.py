@@ -7,7 +7,6 @@ from code_analizer.core.formatters.html import HtmlFormatter
 from code_analizer.core.formatters.json import JsonFormatter
 from code_analizer.core.formatters.text import TextFormatter
 
-
 FORMATTERS = {"console": ConsoleFormatter, "text": TextFormatter, "json": JsonFormatter, "html": HtmlFormatter}
 
 __all__ = ["BaseFormatter", "ConsoleFormatter", "TextFormatter", "JsonFormatter", "HtmlFormatter", "FORMATTERS"]

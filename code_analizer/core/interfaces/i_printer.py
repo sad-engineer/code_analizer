@@ -1,9 +1,9 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
-from typing import Any, Protocol, runtime_checkable
-from typing import Optional, Union
 from pathlib import Path
+from typing import Any, Optional, Protocol, Union, runtime_checkable
+
 from code_analizer.core.interfaces.i_formatter import IFormatter
 
 

@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
-from typing import Any
-
+from code_analizer.core.data_classes import CodeData
 from code_analizer.core.formatters.base import BaseFormatter
 from code_analizer.settings.manager import get_setting
 
@@ -10,7 +9,7 @@ from code_analizer.settings.manager import get_setting
 class ConsoleFormatter(BaseFormatter):
     """Форматтер вывода в консоль"""
 
-    def format_results(self, code_data: Any) -> str:
+    def format_results(self, code_data: CodeData) -> str:
         """
         Форматирует результаты анализа для вывода в консоль.
 
@@ -24,12 +23,12 @@ class ConsoleFormatter(BaseFormatter):
         return "\n".join(output)
 
     @staticmethod
-    def _format_title(code_data: Any) -> str:
+    def _format_title(code_data: CodeData) -> str:
         """Форматирование заголовка"""
-        return f"\nАнализируемый пакет: {code_data.project_name}\n" + "-" * 50
+        return f"\nАнализируемый пакет: {code_data.filename}\n" + "-" * 50
 
     @staticmethod
-    def _format_statistics(code_data: Any) -> str:
+    def _format_statistics(code_data: CodeData) -> str:
         """Форматирование статистики"""
         stats = [
             "\nСтатистика:",
@@ -43,7 +42,7 @@ class ConsoleFormatter(BaseFormatter):
         return "\n".join(stats)
 
     @staticmethod
-    def _format_details(code_data: Any) -> str:
+    def _format_details(code_data: CodeData) -> str:
         """Форматирование деталей"""
         if get_setting("details") != "full":
             return ""

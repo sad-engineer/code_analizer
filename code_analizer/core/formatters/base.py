@@ -1,15 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
-from typing import Any
-
+from code_analizer.core.data_classes import CodeData
 from code_analizer.core.interfaces.i_formatter import IFormatter
 
 
 class BaseFormatter(IFormatter):
     """Базовый класс для всех форматтеров вывода"""
 
-    def format_results(self, code_data: Any) -> str:
+    def format_results(self, code_data: CodeData) -> str:
         """
         Форматирует результаты анализа кода.
 

@@ -25,17 +25,11 @@ def main():
         code_data = analyzer.analyze()
 
         out = OutputtingFactory().get_outputer(
-            formatter_type="text",
-            printer_type="file",
-            output_path=output_dir / "output.txt"
+            formatter_type="text", printer_type="file", output_path=output_dir / "output.txt"
         )
         out.print_results(code_data)
 
-        out = OutputtingFactory().get_outputer(
-            formatter_type="console",
-            printer_type="console",
-            output_path=None
-        )
+        out = OutputtingFactory().get_outputer(formatter_type="console", printer_type="console", output_path=None)
         out.print_results(code_data)
 
 

@@ -1,8 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
-from typing import Any
-
+from code_analizer.core.data_classes import CodeData
 from code_analizer.core.formatters.base import BaseFormatter
 from code_analizer.settings.manager import get_setting
 
@@ -10,7 +9,7 @@ from code_analizer.settings.manager import get_setting
 class HtmlFormatter(BaseFormatter):
     """Форматтер вывода в HTML файл"""
 
-    def format_results(self, code_data: Any) -> str:
+    def format_results(self, code_data: CodeData) -> str:
         """
         Форматирует результаты анализа в HTML.
 
@@ -25,7 +24,7 @@ class HtmlFormatter(BaseFormatter):
         <html>
         <head>
             <meta charset="utf-8">
-            <title>Анализ кода: {code_data.project_name}</title>
+            <title>Анализ кода: {code_data.filename}</title>
             <style>
                 body {{ font-family: Arial, sans-serif; margin: 20px; }}
                 h1, h2 {{ color: #333; }}
@@ -35,7 +34,7 @@ class HtmlFormatter(BaseFormatter):
             </style>
         </head>
         <body>
-            <h1>Анализ кода: {code_data.project_name}</h1>
+            <h1>Анализ кода: {code_data.filename}</h1>
             
             <div class="statistics">
                 <h2>Статистика</h2>

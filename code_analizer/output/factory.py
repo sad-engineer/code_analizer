@@ -11,10 +11,10 @@ from code_analizer.output.printers import PRINTERS
 
 class Outputting:
     def __init__(
-        self, 
-        formatter_class: Type[IFormatter], 
-        printer_class: Type[IPrinter], 
-        output_path: Optional[Union[str, Path]] = None
+        self,
+        formatter_class: Type[IFormatter],
+        printer_class: Type[IPrinter],
+        output_path: Optional[Union[str, Path]] = None,
     ):
         self.formatter_class = formatter_class
         self.printer_class = printer_class

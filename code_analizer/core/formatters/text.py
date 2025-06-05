@@ -1,9 +1,7 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
-from pathlib import Path
-from typing import Any, Union
-
+from code_analizer.core.data_classes import CodeData
 from code_analizer.core.formatters.base import BaseFormatter
 from code_analizer.settings.manager import get_setting
 
@@ -11,7 +9,7 @@ from code_analizer.settings.manager import get_setting
 class TextFormatter(BaseFormatter):
     """Форматтер вывода в текстовый файл"""
 
-    def format_results(self, code_data: Any) -> str:
+    def format_results(self, code_data: CodeData) -> str:
         """
         Форматирует результаты анализа для записи в файл.
 
@@ -22,7 +20,7 @@ class TextFormatter(BaseFormatter):
             str: Отформатированный текст результатов
         """
         output = [
-            f"Анализируемый пакет: {code_data.project_name}",
+            f"Анализируемый пакет: {code_data.filename}",
             "-" * 50,
             "",
             "Статистика:",
