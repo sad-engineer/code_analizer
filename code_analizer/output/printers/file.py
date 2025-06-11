@@ -3,7 +3,14 @@
 # ---------------------------------------------------------------------------------------------------------------------
 from typing import Any
 
-from code_analizer.core import CodeData, HtmlFormatter, SummaryData, TextFormatter
+from code_analizer.core import (
+    CodeData,
+    HtmlFormatter,
+    HtmlSummaryFormatter,
+    SummaryData,
+    TextFormatter,
+    TextSummaryFormatter,
+)
 from code_analizer.output.printers.base import BasePrinter
 
 
@@ -30,7 +37,9 @@ class FilePrinter(BasePrinter):
         Args:
             summary_data: Сводные данные анализа
         """
-        if not isinstance(self.summary_formatter, (TextFormatter, HtmlFormatter)):
+        if not isinstance(
+            self.summary_formatter, (TextFormatter, HtmlFormatter, TextSummaryFormatter, HtmlSummaryFormatter)
+        ):
             raise ValueError("FilePrinter поддерживает только форматтеры для файлового вывода")
 
         formatted_output = self.summary_formatter.format(summary_data)

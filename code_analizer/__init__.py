@@ -8,35 +8,34 @@ code_analizer - Пакет для анализа кода проекта.
 поиска зависимостей и генерации отчетов о качестве кода.
 """
 from code_analizer.core import (
-    CodeTextAnalyzer,
-    FileBatchAnalyzer,
-    LineProcessor,
+    CODE_FORMATTERS,
+    SUMMARY_FORMATTERS,
     CodeData,
-    SummaryData,
+    CodeTextAnalyzer,
+    ConsoleFormatter,
+    ConsoleSummaryFormatter,
+    FileBatchAnalyzer,
+    HtmlFormatter,
+    HtmlSummaryFormatter,
     IFormatter,
     IPrinter,
     IUploadFile,
-    ConsoleFormatter,
-    TextFormatter,
     JsonFormatter,
-    HtmlFormatter,
-    ConsoleSummaryFormatter,
-    TextSummaryFormatter,
     JsonSummaryFormatter,
-    HtmlSummaryFormatter,
-    SUMMARY_FORMATTERS,
-    CODE_FORMATTERS,
+    LineProcessor,
+    SummaryData,
+    TextFormatter,
+    TextSummaryFormatter,
 )
 from code_analizer.output import (
+    PRINTERS,
     BasePrinter,
     ConsolePrinter,
     FilePrinter,
     JsonPrinter,
-    OutputtingFactory,
     Outputting,
-    PRINTERS,
+    OutputtingFactory,
 )
-
 
 __all__ = [
     "CodeTextAnalyzer",

@@ -2,7 +2,7 @@
 # -*- coding: utf-8 -*-
 # ---------------------------------------------------------------------------------------------------------------------
 from pathlib import Path
-from typing import Optional, Type, Union
+from typing import List, Optional, Type, Union
 
 from code_analizer.core import CODE_FORMATTERS, SUMMARY_FORMATTERS, CodeData, IFormatter, IPrinter, SummaryData
 from code_analizer.output.printers import PRINTERS
@@ -21,14 +21,17 @@ class Outputting:
         self.printer_class = printer_class
         self.output_path = output_path
 
-    def print_results(self, code_data: CodeData, summary_data: SummaryData) -> None:
+    def print_results(self, code_data: Union[CodeData, List[CodeData]], summary_data: SummaryData) -> None:
         """Выводит результаты анализа кода в указанный тип вывода"""
         code_formatter = self.code_formatter_class()
         summary_formatter = self.summary_formatter_class()
         printer = self.printer_class(
             code_formatter=code_formatter, summary_formatter=summary_formatter, output_path=self.output_path
         )
-        printer.print_code_data(code_data)
+        if isinstance(code_data, list):
+            [printer.print_code_data(data) for data in code_data]
+        else:
+            printer.print_code_data(code_data)
         printer.print_summary_data(summary_data)
 
 

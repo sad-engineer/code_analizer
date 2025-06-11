@@ -156,6 +156,7 @@ CONFIG_FILE = CONFIG_DIR / "code_analizer.yaml"
 # Настройки по умолчанию
 DEFAULT_CONFIG: Dict[str, Any] = {
     "details": "minimum",       # 'minimum', 'full'
+    "file_suffix": [".py", ],
 }
 
 # Создаем экземпляр менеджера конфигурации

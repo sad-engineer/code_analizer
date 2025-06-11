@@ -18,6 +18,7 @@ from code_analizer.core.formatters import (
 )
 from code_analizer.core.interfaces import IFormatter, IPrinter, IUploadFile
 from code_analizer.core.line_processor import LineProcessor
+from code_analizer.core.wrappers import FileWrapper
 
 __all__ = [
     "CodeTextAnalyzer",
@@ -38,4 +39,5 @@ __all__ = [
     "HtmlSummaryFormatter",
     "SUMMARY_FORMATTERS",
     "CODE_FORMATTERS",
+    "FileWrapper",
 ]
