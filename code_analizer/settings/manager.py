@@ -133,9 +133,22 @@ class ConfigManager:
             print(f"Ошибка при изменении настройки: {e}")
 
 
-# Инициализация путей
-cur_dir = Path(__file__).parent.parent.parent
-CONFIG_DIR = cur_dir / "settings"
+def get_project_root():
+    """Возвращает корневую директорию проекта"""
+    # Если установлен как пакет, ищем директорию с pyproject.toml
+    current = Path(__file__).resolve()
+    while current.parent != current:  # Пока не достигли корня файловой системы
+        if (current / 'pyproject.toml').exists():
+            return current
+        current = current.parent
+
+    # Если не нашли pyproject.toml, возвращаем директорию с текущим файлом
+    return Path(__file__).parent.parent.parent
+
+
+# Определяем пути к конфигурационным файлам
+PROJECT_ROOT = get_project_root()
+CONFIG_DIR = PROJECT_ROOT / "settings"
 if not CONFIG_DIR.exists():
     CONFIG_DIR.mkdir(parents=True, exist_ok=True)
 CONFIG_FILE = CONFIG_DIR / "code_analizer.yaml"
